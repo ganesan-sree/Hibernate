@@ -16,7 +16,7 @@
         <property name="stockName" type="string">
             <column name="STOCKNAME" length="20" not-null="true" unique="true" />
         </property>
-        <set name="stockDailyRecords" table="stock_daily_record" inverse="true" lazy="true" fetch="select">
+        <set name="stockDailyRecords" table="stock_daily_record" inverse="true"   cascade="none">
             <key>
                 <column name="STOCK_ID" not-null="true" />
             </key>

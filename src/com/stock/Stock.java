@@ -8,8 +8,7 @@ public class Stock implements java.io.Serializable {
 	private Integer stockId;
 	private String stockCode;
 	private String stockName;
-	private Set<StockDailyRecord> stockDailyRecords = new HashSet<StockDailyRecord>(
-			0);
+	private Set<StockDailyRecord> stockDailyRecords = new HashSet<StockDailyRecord>(0);
 
 	public Stock() {
 	}

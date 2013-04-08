@@ -16,25 +16,29 @@ public class App {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		session.beginTransaction();
-		
+		Stock stockUpdate=(Stock) session.get(Stock.class, 49);
+		stockUpdate.setStockName("Ganesan1");
 		Stock stock = new Stock();
-		stock.setStockId(2);
-        stock.setStockCode("7052");
+        stock.setStockCode("7051");
         stock.setStockName("PADINI");
-        session.save(stock);
+        
+        session.saveOrUpdate(stock);
+        
+        StockDailyRecord stockDailyRecordsUpdate=(StockDailyRecord) session.get(StockDailyRecord.class, 49);
+System.out.println(stockDailyRecordsUpdate);
         
         StockDailyRecord stockDailyRecords = new StockDailyRecord();
-        stockDailyRecords.setPriceOpen(new Float("1.2"));
-        stockDailyRecords.setPriceClose(new Float("1.1"));
-        stockDailyRecords.setPriceChange(new Float("10.0"));
+        stockDailyRecords.setPriceOpen(new Float("1.3"));
+        stockDailyRecords.setPriceClose(new Float("1.4"));
+        stockDailyRecords.setPriceChange(new Float("10.5"));
         stockDailyRecords.setVolume(300);
         stockDailyRecords.setDate(new Timestamp(new Date().getTime()) );
-        stockDailyRecords.setRecordId(1);
         
-        stockDailyRecords.setStock(stock);        
-        stock.getStockDailyRecords().add(stockDailyRecords);
+        
+        stockDailyRecords.setStock(stockUpdate);        
+       // stock.getStockDailyRecords().add(stockDailyRecords);
 
-        session.save(stockDailyRecords);
+        session.saveOrUpdate(stockDailyRecords);
 
 		session.getTransaction().commit();
 		System.out.println("Done");
